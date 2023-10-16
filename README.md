@@ -1,12 +1,11 @@
 # kafka
 
-* [github](https://github.com/sharkgulf/kafka-docker)
-* [dockerhub](https://hub.docker.com/r/sharkgulf/kafka)
+* [github](https://github.com/infraac/kafka-docker)
 
 ## docker images build
 
 ```bash
-docker build -t sharkgulf/kafka:1.0.1 .
+docker build -t infraac/kafka:1.0.1 .
 ```
 
 ## Create network
@@ -25,7 +24,7 @@ docker run --name zookeeper -d -p 2181:2181 --network=kafka-net zookeeper:3.6.3
 
 ```bash
 for ((i=0;i<3;i++));do
-docker run --name kafka-$i \
+docker run -d --name kafka-$i \
     -p 909$i:9092 \
     -e HOSTNAME=kafka-$i \
     -e KAFKA_BROKER_ID=$i \
@@ -33,7 +32,7 @@ docker run --name kafka-$i \
     -e ZOOKEEPER_CONNECT=zookeeper:2181 \
     -v $PWD/data/$i:/opt/kafka/kafka-logs \
     --network=kafka-net \
-    -dit sharkgulf/kafka:1.0.1
+    -dit infraac/kafka:1.0.1
 done;
 ```
 

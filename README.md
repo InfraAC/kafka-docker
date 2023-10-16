@@ -5,7 +5,7 @@
 ## docker images build
 
 ```bash
-docker build -t infraac/kafka:1.0.1 .
+docker build -t kafka:1.0.1 .
 ```
 
 ## Create network
@@ -32,7 +32,7 @@ docker run -d --name kafka-$i \
     -e ZOOKEEPER_CONNECT=zookeeper:2181 \
     -v $PWD/data/$i:/opt/kafka/kafka-logs \
     --network=kafka-net \
-    -dit infraac/kafka:1.0.1
+    -dit kafka:1.0.1
 done;
 ```
 
